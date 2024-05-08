@@ -43,11 +43,18 @@ function sudo? () {
 
 # Automatically updates relevant packages
 function sysup () {
-	Write-Output "----------Updating chocolatey----------"
-	sudo choco upgrade chocolatey
-	Write-Output "----------Updating scoop---------------"
+	Write-Output "`n----------Updating scoop---------------`n"
 	scoop update *
-	Write-Output "---------Updating complete-------------"
+	Write-Output "`n---------Updating complete-------------`n"
+	}
+
+# Git status shortcut function
+function gg () {
+	git status
+	}
+
+function gh () {
+	git pull --all
 	}
 
 function getrec {
@@ -68,5 +75,13 @@ function getrec {
 
     # Retrieve files in the specified path modified within the specified time
     Get-ChildItem -Path $Path -File | Where-Object { $_.LastWriteTime -gt $targetTime }
+}
+
+function Set-Title {
+    param(
+        [string]
+        $title
+    )
+    $Host.UI.RawUI.WindowTitle = $title   
 }
 
